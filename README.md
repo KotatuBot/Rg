@@ -29,9 +29,9 @@ rg -s "pop eax"
 rg -s "pop eax" -s "pop esp"
 ```
 
-**Once loaded, the loaded file is saved as /tmp/gadget.txt.  
-So, when using the same library, you need to load the library with -l.  
-If gadget.txt does not exist, an error occurs.**
+__Once loaded, the loaded file is saved as /tmp/gadget.txt.__
+__So, when using the same library, you need to load the library with -l.__  
+__If gadget.txt does not exist, an error occurs.__
 
 
 
