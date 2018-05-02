@@ -1,14 +1,37 @@
 # ROP_Search
-This command is for searching gadget in CTF's PWN problem.
-
-Please use it for problem solving of CTF.
-
+This command is for searching gadget in CTF's PWN problem.  
+Please use it for problem solving of CTF.  
 I do not have responsibility for other uses
 
 ## Usage
 ```
-[-l dynlibray] [-s ""instruction code""]
+[-l dynlibray] [-s "instruction code"] [-h help]
 ```
+
+[option]
+```
+-l,--load: Specify target library  
+-s,--search: Specify the instruction to be searched from the library
+```
+
+[example]
+```
+[If you load the library and look for "pop eax"]
+
+rg -l /home/Users/libc-2.15.so -s "pop eax"
+
+[If you are looking for "pop eax" without loading the library]
+
+rg -s "pop eax"
+
+[If you want to search for multiple instructions]
+
+rg -s "pop eax" -s "pop esp"
+```
+
+** Once loaded, the loaded file is saved as /tmp/gadget.txt.  
+So, when using the same library, you need to load the library with -l.  
+If gadget.txt does not exist, an error occurs.**
 
 
 
@@ -34,10 +57,8 @@ optional arguments:
 
 ## test
 
-You can test by loading libc - 2.15.so in the TEST directory.
-
-Please specify libc - 2.15.so as an absolute path. (We will assume that Rg is in the home directory below.) 
-
+You can test by loading libc - 2.15.so in the TEST directory.  
+Please specify libc - 2.15.so as an absolute path. (We will assume that Rg is in the home directory below.)   
 The following is an example of examining pop eax
 
 ```
