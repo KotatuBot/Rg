@@ -4,12 +4,13 @@ import os
 
 from subprocess import Popen, PIPE
 
-"""
-command ni shita
-"""
 def one_search(search_data,data):
     """
-    data search
+    get instruction data from /tmp/gadget.txt
+
+    args:
+        search_data: search instructions
+        data: data from /tmp/gadget.txt
     """
     search_data2 = search_data.replace("[","\[")
     search_data = search_data2.replace("]","\]")
@@ -29,7 +30,9 @@ def one_search(search_data,data):
 
 def gadget(searchs):
     """
-    get data
+    get /tmp/gadget.txt
+    args:
+        searchs: search instructions 
     """
     try:
         with open("/tmp/gadget.txt","r") as fd:
@@ -56,7 +59,9 @@ def file_check():
 
 def output_gadget(fpath):
     """
-    get libc
+    output /tmp/gadget.txt from libc 
+    args:
+        fpath: libc.so path
     """
     # check file
     file_check()
@@ -83,6 +88,9 @@ def output_gadget(fpath):
 
 
 def main():
+    """
+    rg is main function
+    """
     parser = argparse.ArgumentParser(description='argparse sample.')
 
     parser.add_argument('-l [LIBRARY]','--load [LIBRARY]', type=str,nargs=None,help='Specify target library. (Example: -l /usr/local/lib.so)',dest='load')
