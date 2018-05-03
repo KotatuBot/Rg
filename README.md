@@ -1,7 +1,7 @@
 # ROP_Search
 This command is for searching gadget in CTF's PWN problem.  
-Please use it for problem solving of CTF.  
-I do not have responsibility for other uses
+**Please use it for problem solving of CTF.**  
+**I do not have responsibility for other uses**
 
 ## Usage
 ```
@@ -80,7 +80,7 @@ rg -l /home/Users/Rg-master/TEST/libc-2.15.so -s "pop eax"
 ```
 
 # Licence
-MIT
+[MIT](https://github.com/KotatuBRop/blob/master/LICENSE.txt)
 
 
 
