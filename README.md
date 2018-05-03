@@ -78,3 +78,9 @@ rg -l /home/Users/Rg-master/TEST/libc-2.15.so -s "pop eax"
 
   116c9e:	pop    eax
 ```
+
+# Licence
+MIT
+
+
+
