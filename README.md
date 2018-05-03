@@ -80,7 +80,7 @@ rg -l /home/Users/Rg-master/TEST/libc-2.15.so -s "pop eax"
 ```
 
 # Licence
-[MIT](https://github.com/KotatuBRop/blob/master/LICENSE.txt)
+[MIT](https://github.com/KotatuBot/Rop/blob/master/LICENSE.txt)
 
 
 
