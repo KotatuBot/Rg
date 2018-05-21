@@ -36,6 +36,7 @@ __If gadget.txt does not exist, an error occurs.__
 
 
 ## Install
+You need setuptools in the python module.
 ```
 python setup.py install
 
