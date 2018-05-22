@@ -13,7 +13,8 @@ def one_search(search_data,data):
         data: data from /tmp/gadget.txt
     """
     search_data2 = search_data.replace("[","\[")
-    search_data = search_data2.replace("]","\]")
+    search_data3 = search_data2.replace("+","\+")
+    search_data = search_data3.replace("]","\]")
     hit_data = []
     # one nominic
     for one_data in data:
