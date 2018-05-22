@@ -4,6 +4,19 @@ import os
 
 from subprocess import Popen, PIPE
 
+def syscall_address(fpath):
+    """
+    get instruction data of syscall(int 0x80)
+    args:
+        fpath: libc file path
+    """
+    p1 = Popen(['objdump', '-d', '%s'% fpath], stdout=PIPE)
+    p2 = Popen(['grep', 'int '], stdin=p1.stdout, stdout=PIPE)
+    p3 = Popen(['head'],stdin=p2.stdout,stdout=PIPE)
+    stdout, stderr = p3.communicate()
+    print(stdout)
+
+
 def one_search(search_data,data):
     """
     get instruction data from /tmp/gadget.txt
@@ -95,14 +108,23 @@ def main():
     parser = argparse.ArgumentParser(description='argparse sample.')
 
     parser.add_argument('-l [LIBRARY]','--load [LIBRARY]', type=str,nargs=None,help='Specify target library. (Example: -l /usr/local/lib.so)',dest='load')
-    parser.add_argument('-s ["ORDER"]','--search ["ORDER"]',type=str,nargs=None,help='Specify the instruction to be searched from the library. (Example: -s "mov eax,al" -s "pop eax")',action='append',dest='search',required=True)
+    parser.add_argument('-s ["ORDER"]','--search ["ORDER"]',type=str,nargs=None,help='Specify the instruction to be searched from the library. (Example: -s "mov eax,al" -s "pop eax")',action='append',dest='search')
+    parser.add_argument('-S [Syscall]','--Syscall [Syscall]',type=str,nargs=None,help='Specify target address of int 0x80(Example: -S /usr/local/libc.so)',dest='syscall')
 
     args = parser.parse_args()
+    if args.syscall != None:
+        filepath = args.syscall
+        syscall_address(filepath)
+        
+    else:
+        if args.load != None:
+            output_gadget(args.load)
+        if args.search != None:
+            search_data = args.search
+            gadget(search_data)
+        else:
+            print("Please you look help. rg -h")
 
-    if args.load != None:
-        output_gadget(args.load)
-    search_data = args.search
-    gadget(search_data)
 
 if __name__== '__main__':
     main()
