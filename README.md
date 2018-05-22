@@ -31,7 +31,7 @@ rg -s "pop eax" -s "pop esp"
 
 [If you want to investigate int 0x80 which is the command of systemcall]
 
-rg -S "/home/Users/libc-2.15.so"
+rg -S /home/Users/libc-2.15.so
 ```
 
 __Once loaded, the loaded file is saved as /tmp/gadget.txt.__  
