@@ -109,7 +109,7 @@ def main():
 
     parser.add_argument('-l [LIBRARY]','--load [LIBRARY]', type=str,nargs=None,help='Specify target library. (Example: -l /usr/local/lib.so)',dest='load')
     parser.add_argument('-s ["ORDER"]','--search ["ORDER"]',type=str,nargs=None,help='Specify the instruction to be searched from the library. (Example: -s "mov eax,al" -s "pop eax")',action='append',dest='search')
-    parser.add_argument('-S [Syscall]','--Syscall [Syscall]',type=str,nargs=None,help='Specify target address of int 0x80(Example: -S /usr/local/libc.so)',dest='syscall')
+    parser.add_argument('-S [LIBRARY]','--Syscall [LIBRARY]',type=str,nargs=None,help='Specify target address of int 0x80(Example: -S /usr/local/libc.so)',dest='syscall')
 
     args = parser.parse_args()
     if args.syscall != None:
