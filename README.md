@@ -5,13 +5,14 @@ This command is for searching gadget in CTF's PWN problem.
 
 ## Usage
 ```
-[-l dynlibray] [-s "instruction code"] [-h help]
+[-l dynlibray] [-s "instruction code"] [-S dynlibrary] [-h help]
 ```
 
 [option]
 ```
 -l,--load: Specify target library  
 -s,--search: Specify the instruction to be searched from the library
+-S,--Syscall: Specify target address of "int 0x80"
 ```
 
 [example]
@@ -27,6 +28,10 @@ rg -s "pop eax"
 [If you want to search for multiple instructions]
 
 rg -s "pop eax" -s "pop esp"
+
+[If you want to investigate int 0x80 which is the command of systemcall]
+
+rg -S "/home/Users/libc-2.15.so"
 ```
 
 __Once loaded, the loaded file is saved as /tmp/gadget.txt.__  
@@ -40,8 +45,8 @@ You need setuptools in the python module.
 ```
 sudo python setup.py install
 
-rg -h
-usage: rg [-h] [-l [LIBRARY] LOAD] -s ["ORDER"] SEARCH
+usage: rg.py [-h] [-l [LIBRARY] LOAD] [-s ["ORDER"] SEARCH] [-S [LIBRARY]
+             SYSCALL]
 
 argparse sample.
 
@@ -53,6 +58,9 @@ optional arguments:
   -s ["ORDER"] SEARCH, --search ["ORDER"] SEARCH
                         Specify the instruction to be searched from the
                         library. (Example: -s "mov eax,al" -s "pop eax")
+  -S [LIBRARY] SYSCALL, --Syscall [LIBRARY] SYSCALL
+                        Specify target address of int 0x80(Example: -S
+                        /usr/local/libc.so)
 
 ```
 
