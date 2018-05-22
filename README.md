@@ -38,7 +38,7 @@ __If gadget.txt does not exist, an error occurs.__
 ## Install
 You need setuptools in the python module.
 ```
-python setup.py install
+sudo python setup.py install
 
 rg -h
 usage: rg [-h] [-l [LIBRARY] LOAD] -s ["ORDER"] SEARCH
