@@ -2,7 +2,7 @@ import re
 import argparse
 import os
 
-from subprocess import Popen, PIPE
+from subprocess import *
 
 def syscall_address(fpath):
     """
@@ -16,6 +16,16 @@ def syscall_address(fpath):
     stdout, stderr = p3.communicate()
     print(stdout)
 
+def link_lib(binary_path):
+    resultlib = check_output(["ldd","%s" % binary_path])
+    lib_pattern = r"libc.so.*"
+    for i in resultlib.split("\t"):
+       lib_list =  re.findall(lib_pattern,i)
+       if lib_list:
+        split_libc = str(lib_list).split(" ")
+        print("File_name: {0}".format(split_libc[0].lstrip('[\'')))
+        print(split_libc[2])
+        
 
 def one_search(search_data,data):
     """
@@ -111,10 +121,16 @@ def main():
     parser.add_argument('-s ["ORDER"]','--search ["ORDER"]',type=str,nargs=None,help='Specify the instruction to be searched from the library. (Example: -s "mov eax,al" -s "pop eax")',action='append',dest='search')
     parser.add_argument('-S [LIBRARY]','--Syscall [LIBRARY]',type=str,nargs=None,help='Specify target address of int 0x80(Example: -S /usr/local/libc.so)',dest='syscall')
 
+    parser.add_argument('-L ["Link"]','--Link',type=str,nargs=None,dest='link')
+
     args = parser.parse_args()
     if args.syscall != None:
         filepath = args.syscall
         syscall_address(filepath)
+
+    elif args.link != None:
+        binary_path = args.link
+        link_lib(binary_path)
         
     else:
         if args.load != None:
